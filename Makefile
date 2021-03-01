@@ -12,7 +12,7 @@ DOCKER_CMD ?= $(shell which docker 2> /dev/null || which podman 2> /dev/null || 
 KIND_CMD ?= $(shell which kind 2> /dev/null || echo kind)
 GO_CMD ?= $(shell which go 2> /dev/null || echo go)
 GOLANGCI_VERSION = 1.37.0
-IMAGE_NAME=electrocucaracha/nse:0.0.1
+IMAGE_NAME=gwtester/nse:0.0.1
 KIND_CLUSTER_NAME?="nsm"
 
 test:
@@ -23,6 +23,9 @@ run:
 build:
 	sudo -E $(DOCKER_CMD) build -t $(IMAGE_NAME) .
 	sudo -E $(DOCKER_CMD) image prune --force
+push: test build
+	docker-squash $(IMAGE_NAME)
+	sudo -E $(DOCKER_CMD) push $(IMAGE_NAME)
 load: build
 	sudo -E $(KIND_CMD) load docker-image $(IMAGE_NAME) --name $(KIND_CLUSTER_NAME)
 config-test:
