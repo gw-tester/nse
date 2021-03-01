@@ -1,4 +1,7 @@
 # Network Service Mesh Endpoint
+[![Go Report Card](https://goreportcard.com/badge/github.com/gw-tester/nse)](https://goreportcard.com/report/github.com/gw-tester/nse)
+[![GoDoc](https://godoc.org/github.com/gw-tester/nse?status.svg)](https://godoc.org/github.com/gw-tester/nse)
+[![Docker](https://images.microbadger.com/badges/image/gwtester/nse.svg)](http://microbadger.com/images/gwtester/nse)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Summary
@@ -25,14 +28,14 @@ metadata:
 spec:
   containers:
     - name: sidecar
-      image: electrocucaracha/nse:v0.0.1
+      image: gwtester/nse:0.0.1
       resources:
         limits:
           networkservicemesh.io/socket: 1
       volumeMounts:
         - name: nsm-endpoints
           mountPath: /etc/nsminfo
-    - image: electrocucaracha/pgw:0.0.1
+    - image: gwtester/pgw:0.0.1
       name: pgw 
       securityContext:
         capabilities:

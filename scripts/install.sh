@@ -53,7 +53,5 @@ sudo chown -R "$USER:" /opt/nsm
 pushd /opt/nsm
 NSM_NAMESPACE=default SPIRE_ENABLED=false INSECURE=true sudo -E make kind-start helm-install-nsm
 popd
-#mkdir -p "$HOME/.kube"
-#sudo cp /root/.kube/config "$HOME/.kube/config"
 sudo chown -R "$USER" "$HOME/.kube/"
 chmod 600 "$HOME/.kube/config"

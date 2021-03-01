@@ -33,7 +33,7 @@ metadata:
 spec:
   containers:
     - name: sidecar
-      image: electrocucaracha/nse:0.0.1
+      image: gwtester/nse:0.0.1
       resources:
         limits:
           networkservicemesh.io/socket: 1
