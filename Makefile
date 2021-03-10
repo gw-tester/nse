@@ -42,3 +42,6 @@ bin/golangci-lint-${GOLANGCI_VERSION}:
 .PHONY: lint
 lint: bin/golangci-lint
 	bin/golangci-lint run --enable-all ./...
+
+system-test:
+	@vagrant up --no-destroy-on-error
