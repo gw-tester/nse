@@ -61,7 +61,7 @@ for pod in client endpoint; do
 done
 
 info "Validating Client's links"
-assert_equals "$(kubectl exec -c instance client -- ip l | grep -c nsm)" "2"
+assert_equals "$(kubectl exec -c instance client -- ip l | grep -c LOWER_UP )" "4"
 
 info "Validating Client's routes"
 assert_non_empty "$(kubectl exec -c instance client -- ip r | grep "10.0.3.0/24" )"

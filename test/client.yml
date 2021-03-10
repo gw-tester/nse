@@ -13,7 +13,7 @@ kind: Pod
 metadata:
   name: client
   annotations:
-    ns.networkservicemesh.io: lte-network?link=s5u,lte-network?link=sgi
+    ns.networkservicemesh.io: lte-network/s5u3?link=s5u,lte-network?link=sgi
 spec:
   containers:
     - image: busybox:stable
