@@ -55,6 +55,10 @@ function assert_non_empty {
     fi
 }
 
+info "Deploy client and endpoint testing pods"
+make deploy-test
+trap "kubectl delete -k test/" EXIT
+
 info "Wait for pod's readiness"
 for pod in client endpoint; do
     kubectl wait --for=condition=ready pods "$pod" --timeout=3m

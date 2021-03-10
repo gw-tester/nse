@@ -21,25 +21,14 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = false
   config.vm.synced_folder './', '/vagrant'
 
-  # Install dependencies
   config.vm.provision 'shell', privileged: false, inline: <<-SHELL
     set -o errexit
 
     cd /vagrant/
+    # Install dependencies
     ./scripts/install.sh | tee ~/install.log
-  SHELL
-  # Deploy Kubernetes test resources
-  config.vm.provision 'shell', privileged: false, inline: <<-SHELL
-    set -o errexit
 
-    cd /vagrant/
-    make deploy-test
-  SHELL
-  # Validating NSM resources
-  config.vm.provision 'shell', privileged: false, inline: <<-SHELL
-    set -o errexit
-
-    cd /vagrant/
+    # Validating NSM resources
     ./scripts/check.sh | tee ~/check.log
   SHELL
 
